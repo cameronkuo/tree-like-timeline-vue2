@@ -2,7 +2,7 @@
 	<section class="timeline" style="padding:0;">
 		<div class="timeline__nodes">
 			<template v-for="(item, i) in sortedList">
-				<span v-if="item.divider" class="timeline__node_divider" :key="`${item[timeKey]}-${i}`" :data-year="item[timeKey] | yearFilter" />
+				<span v-if="item.divider" class="timeline__node_divider" :key="`${item[timeKey]}-${i}`" :data-year="yearFilter(item[timeKey])" />
 				<div v-else class="timeline__node_item" ref="timeline__node_item" :style="{ marginTop: is_mobile ? '' : item.offsetTop }" :key="`${item[timeKey]}-${i}`">
 					<slot :item="item" :index="i">{{item}}</slot>
 				</div>
@@ -43,13 +43,11 @@ export default {
 				});
 		}
 	},
-	filters: {
+	methods: {
 		yearFilter(val) {
 			return moment(val).tz("Asia/Taipei").format("YYYY");
 			// return moment(val).tz("Asia/Taipei").year() - 1911; // 民國年
-		}
-	},
-	methods: {
+		},
 		initRWD() {
 			this.is_mobile = window.innerWidth <= 768;
 		},
