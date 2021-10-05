@@ -6,6 +6,18 @@
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build --target lib --name tree-like-timeline ./src/components/index.js"
 	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jienfu/tree-like-timeline.git"
+	},
+	"files": [
+		"dist/*",
+		"src/*",
+		"public/*"
+	],
+	"keywords": [
+		"timeline"
+	],
 	"dependencies": {
 		"core-js": "^3.6.5",
 		"moment-timezone": "^0.5.33",

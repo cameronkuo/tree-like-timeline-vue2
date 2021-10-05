@@ -2,8 +2,8 @@
 	<section class="timeline" style="padding:0;">
 		<div class="timeline__nodes">
 			<template v-for="(item, i) in sortedList">
-				<span v-if="item.divider" class="timeline__node_divider" :key="`${item[timeKey]}-${i}`" :data-year="yearFilter(item[timeKey])" />
-				<div v-else class="timeline__node_item" ref="timeline__node_item" :style="{ marginTop: rwd < 2 ? item.offsetTop : '' }" :key="`${item[timeKey]}-${i}`">
+				<span v-if="item.divider" class="timeline__node_divider" :key="`${item[timeKey]}-${i}`" :data-year="item[timeKey] | yearFilter" />
+				<div v-else class="timeline__node_item" ref="timeline__node_item" :style="{ marginTop: is_mobile ? '' : item.offsetTop }" :key="`${item[timeKey]}-${i}`">
 					<slot :item="item" :index="i">{{item}}</slot>
 				</div>
 			</template>
@@ -23,6 +23,11 @@ export default {
 			type: String,
 			default: () => "time"
 		},
+	},
+	data() {
+		return {
+			is_mobile: true,
+		}
 	},
 	computed: {
 		sortedList() {
@@ -49,11 +54,11 @@ export default {
 			this.is_mobile = window.innerWidth <= 768;
 		},
 	},
-	created() {
-		if (process.client) {
+	mounted() {
+		this.$nextTick(() => {
 			this.initRWD();
 			window.addEventListener("resize", this.initRWD);
-		}
+		})
 	},
 }
 </script>
