@@ -1,9 +1,9 @@
 <template>
-	<section class="timeline" style="padding:0;">
-		<div class="timeline__nodes">
+	<section class="tree-like-timeline" style="padding:0;">
+		<div class="tree-like-timeline__nodes">
 			<template v-for="(item, i) in sortedList">
-				<span v-if="item.divider" class="timeline__node_divider" :key="`${item[timeKey]}-${i}`" :data-year="yearFilter(item[timeKey])" />
-				<div v-else class="timeline__node_item" ref="timeline__node_item" :style="{ marginTop: is_mobile ? '' : item.offsetTop }" :key="`${item[timeKey]}-${i}`">
+				<span v-if="item.divider" class="tree-like-timeline__node_divider" :key="`${item[timeKey]}-${i}`" :data-year="yearFilter(item[timeKey])" />
+				<div v-else class="tree-like-timeline__node_item" ref="tree-like-timeline__node_item" :style="{ marginTop: is_mobile ? '' : item.offsetTop }" :key="`${item[timeKey]}-${i}`">
 					<slot :item="item" :index="i">{{item}}</slot>
 				</div>
 			</template>
@@ -23,6 +23,7 @@ export default {
 			type: String,
 			default: () => "time"
 		},
+		dividerLabel: Function
 	},
 	data() {
 		return {
@@ -33,20 +34,20 @@ export default {
 		sortedList() {
 			return this.data
 				.reduce((a, b) => {
-					const time = moment(b[this.timeKey]).tz("Asia/Taipei").format("YYYY");
-					if (!a.find(item => moment(item[this.timeKey]).tz("Asia/Taipei").format("YYYY") == time)) a.push({ [this.timeKey]: time, divider: true });
+					const time = moment(b[this.timeKey]).format("YYYY");
+					if (!a.find(item => moment(item[this.timeKey]).format("YYYY") == time)) a.push({ [this.timeKey]: time, divider: true });
 					a.push(b);
 					return a;
 				}, new Array)
 				.sort((a, b) => {
-					return moment(a[this.timeKey]).tz("Asia/Taipei").unix() - moment(b[this.timeKey]).tz("Asia/Taipei").unix();
+					return moment(a[this.timeKey]).unix() - moment(b[this.timeKey]).unix();
 				});
 		}
 	},
 	methods: {
 		yearFilter(val) {
-			return moment(val).tz("Asia/Taipei").format("YYYY");
-			// return moment(val).tz("Asia/Taipei").year() - 1911; // 民國年
+			return this.dividerLabel && this.dividerLabel(val)
+				|| moment(val).format("YYYY");
 		},
 		initRWD() {
 			this.is_mobile = window.innerWidth <= 768;
@@ -56,19 +57,19 @@ export default {
 		this.$nextTick(() => {
 			this.initRWD();
 			window.addEventListener("resize", this.initRWD);
-		})
+		});
 	},
 }
 </script>
 
-<style lang="scss" scoped>
-$connect_line: 5em; // 左右兩邊與中間連接線之寬度
-$divider_size: 4em; // 年份分界節點之寬高
-$point_size: 1em; // 左右兩邊對中線的圓點之寬高
-$theme: #000; // 主題顏色
-.timeline {
+<style lang="scss">
+$--tree-like-timeline_connect_line: 5em; // 左右兩邊與中間連接線之寬度
+$--tree-like-timeline_divider_size: 4em; // 年份分界節點之寬高
+$--tree-like-timeline_point_size: 1em; // 左右兩邊對中線的圓點之寬高
+$--tree-like-timeline_theme: rgb(200, 200, 200); // 主題顏色
+.tree-like-timeline {
 	position: relative;
-	margin-top: #{$divider_size * 0.5} !important;
+	margin-top: #{$--tree-like-timeline_divider_size * 0.5} !important;
 
 	// 中線
 	&::before {
@@ -76,7 +77,7 @@ $theme: #000; // 主題顏色
 		display: block;
 		height: 100%;
 		width: 1px;
-		background: $theme;
+		background: $--tree-like-timeline_theme;
 		position: absolute;
 		top: 0;
 		left: 50%;
@@ -84,12 +85,12 @@ $theme: #000; // 主題顏色
 		transform: translateX(-50%);
 		@media screen and (max-width: 768px) {
 			transform: none;
-			left: #{$divider_size * 0.5};
+			left: #{$--tree-like-timeline_divider_size * 0.5};
 		}
 	}
 
 	// 年份節點
-	.timeline__node_divider {
+	.tree-like-timeline__node_divider {
 		clear: both;
 		width: 100%;
 		display: block;
@@ -100,11 +101,11 @@ $theme: #000; // 主題顏色
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			width: $divider_size;
-			height: $divider_size;
+			width: $--tree-like-timeline_divider_size;
+			height: $--tree-like-timeline_divider_size;
 			border-radius: 100%;
-			background: $theme;
-			color: #fff;
+			background: $--tree-like-timeline_theme;
+			color: invert($--tree-like-timeline_theme);
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -116,9 +117,9 @@ $theme: #000; // 主題顏色
 	}
 
 	// 節點
-	.timeline__node_item {
+	.tree-like-timeline__node_item {
 		position: relative;
-		width: calc(50% - #{$connect_line});
+		width: calc(50% - #{$--tree-like-timeline_connect_line});
 
 		&:not(:last-child) {
 			margin-bottom: 20px;
@@ -128,9 +129,9 @@ $theme: #000; // 主題顏色
 		&::before {
 			content: "";
 			display: block;
-			width: $connect_line;
+			width: $--tree-like-timeline_connect_line;
 			height: 2px;
-			background: $theme;
+			background: $--tree-like-timeline_theme;
 			position: absolute;
 			top: 30%;
 			transform: translateY(-50%);
@@ -141,11 +142,11 @@ $theme: #000; // 主題顏色
 			content: "";
 			box-sizing: border-box;
 			display: block;
-			width: $point_size;
-			height: $point_size;
+			width: $--tree-like-timeline_point_size;
+			height: $--tree-like-timeline_point_size;
 			background: #fff;
 			color: #fff;
-			border: 3px solid $theme;
+			border: 3px solid $--tree-like-timeline_theme;
 			position: absolute;
 			top: 30%;
 			transform: translateY(-50%);
@@ -163,7 +164,10 @@ $theme: #000; // 主題顏色
 			}
 			// 左邊對中線的圓點
 			&::after {
-				left: calc(100% + #{$connect_line - $point_size * 0.5});
+				left: calc(
+					100% + #{$--tree-like-timeline_connect_line -
+						$--tree-like-timeline_point_size * 0.5}
+				);
 			}
 		}
 
@@ -178,32 +182,31 @@ $theme: #000; // 主題顏色
 			}
 			// 右邊對中線的圓點
 			&::after {
-				right: calc(100% + #{$connect_line - $point_size * 0.5});
+				right: calc(
+					100% + #{$--tree-like-timeline_connect_line -
+						$--tree-like-timeline_point_size * 0.5}
+				);
 			}
 		}
 
 		@media screen and (max-width: 768px) {
-			width: calc(100% - #{$connect_line});
+			width: calc(100% - #{$--tree-like-timeline_connect_line});
 			float: right !important;
 			// 全部對中線的連接線
 			&::before {
 				left: unset !important;
 				right: 100% !important;
-				width: #{$connect_line - ($divider_size * 0.5)};
+				width: #{$--tree-like-timeline_connect_line -
+					($--tree-like-timeline_divider_size * 0.5)};
 			}
 			// 全部對中線的圓點
 			&::after {
 				left: unset !important;
 				right: calc(
-					100% + #{$connect_line - $divider_size * 0.5 - $point_size *
-						0.5}
+					100% + #{$--tree-like-timeline_connect_line -
+						$--tree-like-timeline_divider_size * 0.5 -
+						$--tree-like-timeline_point_size * 0.5}
 				) !important;
-			}
-		}
-		@media screen and (min-width: 769px) {
-			// 右邊整體向下位移（避免１st跟２nd並排）
-			&:nth-of-type(even) {
-				// margin-top: 50px;
 			}
 		}
 	}
