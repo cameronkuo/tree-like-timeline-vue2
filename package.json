@@ -1,6 +1,6 @@
 {
 	"name": "tree-like-timeline-vue",
-	"version": "0.1.9",
+	"version": "0.0.1",
 	"main": "dist/tree-like-timeline-vue.common.js",
 	"scripts": {
 		"serve": "vue-cli-service serve",
@@ -16,7 +16,8 @@
 	],
 	"style": "dist/tree-like-timeline-vue.css",
 	"keywords": [
-		"timeline"
+		"timeline",
+		"vue"
 	],
 	"dependencies": {
 		"core-js": "^3.6.5",
