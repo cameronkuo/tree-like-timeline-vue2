@@ -1,9 +1,9 @@
 <template>
-	<section class="tree-like-timeline" style="padding:0;">
-		<div class="tree-like-timeline__nodes">
+	<section class="tree-like-timeline-vue" style="padding:0;">
+		<div class="tree-like-timeline-vue__nodes">
 			<template v-for="(item, i) in sortedList">
-				<span v-if="item.divider" class="tree-like-timeline__node_divider" :key="`${item[timeKey]}-${i}`" :data-year="yearFilter(item[timeKey])" />
-				<div v-else class="tree-like-timeline__node_item" ref="tree-like-timeline__node_item" :style="{ marginTop: is_mobile ? '' : item.offsetTop }" :key="`${item[timeKey]}-${i}`">
+				<span v-if="item.divider" class="tree-like-timeline-vue__node_divider" :key="`${item[timeKey]}-${i}`" :data-year="yearFilter(item[timeKey])" />
+				<div v-else class="tree-like-timeline-vue__node_item" ref="tree-like-timeline-vue__node_item" :style="{ marginTop: is_mobile ? '' : item.offsetTop }" :key="`${item[timeKey]}-${i}`">
 					<slot :item="item" :index="i">{{item}}</slot>
 				</div>
 			</template>
@@ -63,13 +63,13 @@ export default {
 </script>
 
 <style lang="scss">
-$--tree-like-timeline_connect_line: 5em; // 左右兩邊與中間連接線之寬度
-$--tree-like-timeline_divider_size: 4em; // 年份分界節點之寬高
-$--tree-like-timeline_point_size: 1em; // 左右兩邊對中線的圓點之寬高
-$--tree-like-timeline_theme: rgb(200, 200, 200); // 主題顏色
-.tree-like-timeline {
+$--tree-like-timeline-vue_connect_line: 5em; // 左右兩邊與中間連接線之寬度
+$--tree-like-timeline-vue_divider_size: 4em; // 年份分界節點之寬高
+$--tree-like-timeline-vue_point_size: 1em; // 左右兩邊對中線的圓點之寬高
+$--tree-like-timeline-vue_theme: rgb(200, 200, 200); // 主題顏色
+.tree-like-timeline-vue {
 	position: relative;
-	margin-top: #{$--tree-like-timeline_divider_size * 0.5} !important;
+	margin-top: #{$--tree-like-timeline-vue_divider_size * 0.5} !important;
 
 	// 中線
 	&::before {
@@ -77,7 +77,7 @@ $--tree-like-timeline_theme: rgb(200, 200, 200); // 主題顏色
 		display: block;
 		height: 100%;
 		width: 1px;
-		background: $--tree-like-timeline_theme;
+		background: $--tree-like-timeline-vue_theme;
 		position: absolute;
 		top: 0;
 		left: 50%;
@@ -85,12 +85,12 @@ $--tree-like-timeline_theme: rgb(200, 200, 200); // 主題顏色
 		transform: translateX(-50%);
 		@media screen and (max-width: 768px) {
 			transform: none;
-			left: #{$--tree-like-timeline_divider_size * 0.5};
+			left: #{$--tree-like-timeline-vue_divider_size * 0.5};
 		}
 	}
 
 	// 年份節點
-	.tree-like-timeline__node_divider {
+	.tree-like-timeline-vue__node_divider {
 		clear: both;
 		width: 100%;
 		display: block;
@@ -101,11 +101,11 @@ $--tree-like-timeline_theme: rgb(200, 200, 200); // 主題顏色
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			width: $--tree-like-timeline_divider_size;
-			height: $--tree-like-timeline_divider_size;
+			width: $--tree-like-timeline-vue_divider_size;
+			height: $--tree-like-timeline-vue_divider_size;
 			border-radius: 100%;
-			background: $--tree-like-timeline_theme;
-			color: invert($--tree-like-timeline_theme);
+			background: $--tree-like-timeline-vue_theme;
+			color: invert($--tree-like-timeline-vue_theme);
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -117,9 +117,9 @@ $--tree-like-timeline_theme: rgb(200, 200, 200); // 主題顏色
 	}
 
 	// 節點
-	.tree-like-timeline__node_item {
+	.tree-like-timeline-vue__node_item {
 		position: relative;
-		width: calc(50% - #{$--tree-like-timeline_connect_line});
+		width: calc(50% - #{$--tree-like-timeline-vue_connect_line});
 
 		&:not(:last-child) {
 			margin-bottom: 20px;
@@ -129,9 +129,9 @@ $--tree-like-timeline_theme: rgb(200, 200, 200); // 主題顏色
 		&::before {
 			content: "";
 			display: block;
-			width: $--tree-like-timeline_connect_line;
+			width: $--tree-like-timeline-vue_connect_line;
 			height: 2px;
-			background: $--tree-like-timeline_theme;
+			background: $--tree-like-timeline-vue_theme;
 			position: absolute;
 			top: 30%;
 			transform: translateY(-50%);
@@ -142,11 +142,11 @@ $--tree-like-timeline_theme: rgb(200, 200, 200); // 主題顏色
 			content: "";
 			box-sizing: border-box;
 			display: block;
-			width: $--tree-like-timeline_point_size;
-			height: $--tree-like-timeline_point_size;
+			width: $--tree-like-timeline-vue_point_size;
+			height: $--tree-like-timeline-vue_point_size;
 			background: #fff;
 			color: #fff;
-			border: 3px solid $--tree-like-timeline_theme;
+			border: 3px solid $--tree-like-timeline-vue_theme;
 			position: absolute;
 			top: 30%;
 			transform: translateY(-50%);
@@ -165,8 +165,8 @@ $--tree-like-timeline_theme: rgb(200, 200, 200); // 主題顏色
 			// 左邊對中線的圓點
 			&::after {
 				left: calc(
-					100% + #{$--tree-like-timeline_connect_line -
-						$--tree-like-timeline_point_size * 0.5}
+					100% + #{$--tree-like-timeline-vue_connect_line -
+						$--tree-like-timeline-vue_point_size * 0.5}
 				);
 			}
 		}
@@ -183,29 +183,29 @@ $--tree-like-timeline_theme: rgb(200, 200, 200); // 主題顏色
 			// 右邊對中線的圓點
 			&::after {
 				right: calc(
-					100% + #{$--tree-like-timeline_connect_line -
-						$--tree-like-timeline_point_size * 0.5}
+					100% + #{$--tree-like-timeline-vue_connect_line -
+						$--tree-like-timeline-vue_point_size * 0.5}
 				);
 			}
 		}
 
 		@media screen and (max-width: 768px) {
-			width: calc(100% - #{$--tree-like-timeline_connect_line});
+			width: calc(100% - #{$--tree-like-timeline-vue_connect_line});
 			float: right !important;
 			// 全部對中線的連接線
 			&::before {
 				left: unset !important;
 				right: 100% !important;
-				width: #{$--tree-like-timeline_connect_line -
-					($--tree-like-timeline_divider_size * 0.5)};
+				width: #{$--tree-like-timeline-vue_connect_line -
+					($--tree-like-timeline-vue_divider_size * 0.5)};
 			}
 			// 全部對中線的圓點
 			&::after {
 				left: unset !important;
 				right: calc(
-					100% + #{$--tree-like-timeline_connect_line -
-						$--tree-like-timeline_divider_size * 0.5 -
-						$--tree-like-timeline_point_size * 0.5}
+					100% + #{$--tree-like-timeline-vue_connect_line -
+						$--tree-like-timeline-vue_divider_size * 0.5 -
+						$--tree-like-timeline-vue_point_size * 0.5}
 				) !important;
 			}
 		}

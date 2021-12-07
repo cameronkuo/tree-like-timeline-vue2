@@ -1,7 +1,7 @@
 <template>
 	<Timeline :data="list">
 		<template v-slot="{item}">
-			<article class="tree-like-timeline__node">
+			<article class="tree-like-timeline-vue__node">
 				<img :src="item.thumb" :alt="item.title" :width="item.thumb_size">
 				<time>{{timeFilter(item.time)}}</time>
 				<p>{{item.title}}</p>
@@ -152,11 +152,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tree-like-timeline {
+.tree-like-timeline-vue {
 	max-width: 900px;
 	margin: auto;
 }
-.tree-like-timeline__node {
+.tree-like-timeline-vue__node {
 	border: 1px solid #000;
 	padding: 5%;
 	display: flex;

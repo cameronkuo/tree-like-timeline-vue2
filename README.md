@@ -1,4 +1,4 @@
-# tree-like-timeline
+# tree-like-timeline-vue
 
 ## Project setup
 ```
