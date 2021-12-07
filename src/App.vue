@@ -1,5 +1,5 @@
 <template>
-	<Timeline :data="list">
+	<Timeline :data="list" theme="#738bff" text-color="rgb(255,255,255)">
 		<template v-slot="{item}">
 			<article class="tree-like-timeline-vue__node">
 				<img :src="item.thumb" :alt="item.title" :width="item.thumb_size">

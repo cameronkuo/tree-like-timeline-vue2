@@ -79,7 +79,7 @@ export default {
 ```
 
 ### timeKey
-Pick a key as time（default as `time`）
+Pick a key as time (default as `time`).
 ```html
 <TreeLikeTimeline :data="list" time-key="date">
     <template v-slot="{item}">
@@ -104,9 +104,9 @@ export default {
 ### offsetTop
 When the content of the nodes on both sides are completely side by side, you can independently adjust the node to be shifted downward.
 ```html
-<TreeLikeTimeline :data="list" time-key="date">
+<TreeLikeTimeline :data="list">
     <template v-slot="{item}">
-        <time>{{item.date}}</time>
+        <time>{{item.time}}</time>
     </template>
 </TreeLikeTimeline>
 ```
@@ -116,14 +116,44 @@ export default {
         return {
             list: [
                 {
-                    date: "2013-04"
+                    time: "2013-04"
                 },
                 {
-                    date: "2013-05",
+                    time: "2013-05",
                     offsetTop: "50px"
                 }
             ]
         }
     }
 }
+```
+
+### dividerLabel
+You can format timenode label by using `divider-label` attribute.
+```html
+<TreeLikeTimeline :data="list" :divider-label="formatDividerLabel">
+    <template v-slot="{item}">
+        <time>{{item.time}}</time>
+    </template>
+</TreeLikeTimeline>
+```
+```js
+export default {
+    methods: {
+        formatDividerLabel(timeValue) {
+            return new Date(timeValue).getFullYear();
+        }
+    }
+}
+```
+
+### Theme and Text Color
+You can custom theme color by using `theme` attribute.
+Also change text color of timeline node by using `text-color`.
+```html
+<TreeLikeTimeline :data="list" theme="#738bff" text-color="#fffff">
+    <template v-slot="{item}">
+        <time>{{item.time}}</time>
+    </template>
+</TreeLikeTimeline>
 ```
