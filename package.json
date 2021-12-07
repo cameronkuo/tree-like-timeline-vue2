@@ -5,7 +5,8 @@
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build --target lib --name tree-like-timeline-vue ./src/components/index.js",
-		"build:demo": "vue-cli-service build ./src/main.js --dest demo --mode development"
+		"build:demo": "vue-cli-service build ./src/main.js --dest demo --mode development",
+		"prepublish": "npm run build"
 	},
 	"repository": {
 		"type": "git",
