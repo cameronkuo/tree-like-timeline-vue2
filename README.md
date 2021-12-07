@@ -79,7 +79,7 @@ export default {
 ```
 
 ### timeKey
-用來選擇當作時間的 key（default as `time`）
+Pick a key as time（default as `time`）
 ```html
 <TreeLikeTimeline :data="list" time-key="date">
     <template v-slot="{item}">
@@ -102,7 +102,7 @@ export default {
 ```
 
 ### offsetTop
-當兩邊節點內容完全並排時，可以獨立調整欲向下位移的節點
+When the content of the nodes on both sides are completely side by side, you can independently adjust the node to be shifted downward.
 ```html
 <TreeLikeTimeline :data="list" time-key="date">
     <template v-slot="{item}">
