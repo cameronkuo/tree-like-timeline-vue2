@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import moment from "moment-timezone";
 export default {
 	props: {
 		data: {
@@ -42,13 +41,13 @@ export default {
 		sortedList() {
 			return this.data
 				.reduce((a, b) => {
-					const time = moment(b[this.timeKey]).format("YYYY");
-					if (!a.find(item => moment(item[this.timeKey]).format("YYYY") == time)) a.push({ [this.timeKey]: time, divider: true });
+					const time = new Date(b[this.timeKey]).getFullYear().toString();
+					if (!a.find(item => new Date(item[this.timeKey]).getFullYear().toString() == time)) a.push({ [this.timeKey]: time, divider: true });
 					a.push(b);
 					return a;
 				}, new Array)
 				.sort((a, b) => {
-					return moment(a[this.timeKey]).unix() - moment(b[this.timeKey]).unix();
+					return new Date(a[this.timeKey]).getTime() - new Date(b[this.timeKey]).getTime();
 				});
 		},
 		cssVars() {
@@ -61,7 +60,7 @@ export default {
 	methods: {
 		yearFilter(val) {
 			return this.dividerLabel && this.dividerLabel(val)
-				|| moment(val).format("YYYY");
+				|| new Date(val).getFullYear();
 		},
 		initRWD() {
 			this.is_mobile = window.innerWidth <= 768;

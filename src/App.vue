@@ -12,7 +12,6 @@
 
 <script>
 import Timeline from "./components/Timeline.vue";
-import moment from "moment-timezone";
 export default {
 	name: "App",
 	components: {
@@ -145,7 +144,8 @@ export default {
 	},
 	methods: {
 		timeFilter(val) {
-			return moment(val).tz("Asia/Taipei").format("YYYY-MM-DD");
+			const date = new Date(val)
+			return `${date.getFullYear()}-${date.getMonth() + 1}`;
 		}
 	}
 }
