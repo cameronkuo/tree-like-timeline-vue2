@@ -10,7 +10,7 @@ A lightweight tree-like timeline component base on Vue.js without any dependency
 ![](https://i.imgur.com/93LykO2.png)
 
 ## Mobile friendly
-![](https://i.imgur.com/pKdtdQ9.gif)
+![](https://i.imgur.com/WrveZxl.gif)
 
 ## Project setup
 ```
