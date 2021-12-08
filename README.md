@@ -1,8 +1,20 @@
 # tree-like-timeline-vue
+A lightweight tree-like timeline component base on Vue.js without any dependency.
+
+## Features
+* Lightweight (without any dependency)
+* Mobile friendly (RWD)
+* Customize your content flexibly
+
+## Layout
+![](https://i.imgur.com/93LykO2.png)
+
+## Mobile friendly
+![](https://i.imgur.com/pKdtdQ9.gif)
 
 ## Project setup
 ```
-npm install tree-like-timeline-vue -S
+npm install tree-like-timeline-vue
 ```
 
 ### Quick Start
