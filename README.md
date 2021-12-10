@@ -171,6 +171,8 @@ Also change text color of timeline node by using `text-color`.
 ```
 
 ### Custom Your content style
+You can access the class `.tree-like-timeline-vue__node_item` to custom content style
+
 HTML
 ```html
 <template v-slot="{item}">
