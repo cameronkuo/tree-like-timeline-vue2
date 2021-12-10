@@ -7,10 +7,10 @@ A lightweight tree-like timeline component base on Vue.js without any dependency
 * Customize your content flexibly
 
 ## Layout
-![Screenshot](https://i.imgur.com/93LykO2.png)
+![Screenshot](https://i.imgur.com/gMcEI7V.png)
 
 ## Mobile friendly
-![Screenshot](https://i.imgur.com/o5HCxle.gif)
+![Screenshot](https://i.imgur.com/hXThh1g.gif)
 
 ## Project setup
 ```
@@ -169,3 +169,34 @@ Also change text color of timeline node by using `text-color`.
     </template>
 </TreeLikeTimeline>
 ```
+
+### Custom Your content style
+HTML
+```html
+<template v-slot="{item}">
+    <article>
+        <img :src="item.thumb" :alt="item.title" :width="item.thumb_size">
+        <time>{{timeFilter(item.time)}}</time>
+        <p>{{item.title}}</p>
+    </article>
+</template>
+```
+CSS
+```css
+/* Left side */
+.tree-like-timeline-vue__node_item:nth-of-type(even) {
+	article {
+		background: yellow;
+		border: 5px double red;
+	}
+}
+/* Right side */
+.tree-like-timeline-vue__node_item:nth-of-type(odd) {
+	article {
+		background: pink;
+		border: 3px dashed blue;
+	}
+}
+```
+Result
+![Screenshot](https://i.imgur.com/qE1zpN3.png)
