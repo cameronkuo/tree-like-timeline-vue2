@@ -12,12 +12,12 @@ A lightweight tree-like timeline component base on Vue.js without any dependency
 ## Mobile friendly
 ![Screenshot](https://i.imgur.com/coUSmsJ.gif)
 
-## Project setup
+## Install
 ```
 npm install tree-like-timeline-vue
 ```
 
-### Quick Start
+## Quick Start
 Import `tree-like-timeline-vue` component
 ```js
 import TreeLikeTimeline from "tree-like-timeline-vue";
@@ -90,6 +90,8 @@ export default {
 }
 ```
 
+## Options
+
 ### timeKey
 Pick a key as time (default as `time`).
 ```html
@@ -139,6 +141,7 @@ export default {
     }
 }
 ```
+![Screenshot](https://i.imgur.com/OLybsL3.png)
 
 ### dividerLabel
 You can format timenode label by using `divider-label` attribute.
@@ -175,13 +178,15 @@ You can access the class `.tree-like-timeline-vue__node_item` to custom content 
 
 HTML
 ```html
-<template v-slot="{item}">
-    <article>
-        <img :src="item.thumb" :alt="item.title" :width="item.thumb_size">
-        <time>{{timeFilter(item.time)}}</time>
-        <p>{{item.title}}</p>
-    </article>
-</template>
+<TreeLikeTimeline :data="list">
+    <template v-slot="{item}">
+        <article>
+            <img :src="item.thumb" :alt="item.title" :width="item.thumb_size">
+            <time>{{timeFilter(item.time)}}</time>
+            <p>{{item.title}}</p>
+        </article>
+    </template>
+</TreeLikeTimeline>
 ```
 CSS
 ```css
