@@ -187,17 +187,17 @@ CSS
 ```css
 /* Left side */
 .tree-like-timeline-vue__node_item:nth-of-type(even) {
-	article {
-		background: yellow;
-		border: 5px double red;
-	}
+    article {
+        background: yellow;
+        border: 5px double red;
+    }
 }
 /* Right side */
 .tree-like-timeline-vue__node_item:nth-of-type(odd) {
-	article {
-		background: pink;
-		border: 3px dashed blue;
-	}
+    article {
+        background: pink;
+        border: 3px dashed blue;
+    }
 }
 ```
 Result
