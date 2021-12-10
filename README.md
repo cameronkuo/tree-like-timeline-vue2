@@ -10,7 +10,7 @@ A lightweight tree-like timeline component base on Vue.js without any dependency
 ![Screenshot](https://i.imgur.com/93LykO2.png)
 
 ## Mobile friendly
-![Screenshot](https://i.imgur.com/AQUKzjc.gif)
+![Screenshot](https://i.imgur.com/o5HCxle.gif)
 
 ## Project setup
 ```
@@ -18,9 +18,9 @@ npm install tree-like-timeline-vue
 ```
 
 ### Quick Start
-Import `tree-like-timeline-test` component
+Import `tree-like-timeline-vue` component
 ```js
-import TreeLikeTimeline from "tree-like-timeline-test";
+import TreeLikeTimeline from "tree-like-timeline-vue";
 export default {
     components: {
         TreeLikeTimeline
@@ -31,14 +31,14 @@ export default {
 Import `tree-like-timeline-vue.css` file
 ```css
 <style>
-@import "tree-like-timeline-test/dist/tree-like-timeline-vue.css";
+@import "tree-like-timeline-vue/dist/tree-like-timeline-vue.css";
 </style>
 ```
 
 Or
 Import `tree-like-timeline-vue.css` by webpack
 ```js
-import "tree-like-timeline-test/dist/tree-like-timeline-vue.css";
+import "tree-like-timeline-vue/dist/tree-like-timeline-vue.css";
 ```
 
 Vue template
