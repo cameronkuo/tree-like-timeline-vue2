@@ -1,4 +1,4 @@
-# tree-like-timeline-vue
+# tree-like-timeline-vue2
 
 A lightweight tree-like timeline component base on **Vue2** without any dependency.
 
