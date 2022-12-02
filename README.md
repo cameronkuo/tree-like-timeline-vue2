@@ -1,4 +1,4 @@
-# tree-like-timeline-vue2
+# tree-like-timeline-vue
 
 A lightweight tree-like timeline component base on **Vue2** without any dependency.
 
@@ -29,9 +29,9 @@ Import `tree-like-timeline-vue` component
 ```js
 import TreeLikeTimeline from "tree-like-timeline-vue";
 export default {
-	components: {
-		TreeLikeTimeline,
-	},
+  components: {
+    TreeLikeTimeline,
+  },
 };
 ```
 
@@ -54,12 +54,12 @@ Vue template
 
 ```html
 <TreeLikeTimeline :data="list">
-	<template v-slot="{ item }">
-		<article class="timeline__node">
-			<time>{{ item.time }}</time>
-			<p>{{ item.title }}</p>
-		</article>
-	</template>
+  <template v-slot="{ item }">
+    <article class="timeline__node">
+      <time>{{ item.time }}</time>
+      <p>{{ item.title }}</p>
+    </article>
+  </template>
 </TreeLikeTimeline>
 ```
 
@@ -67,37 +67,37 @@ Data
 
 ```js
 export default {
-	data() {
-		return {
-			list: [
-				{
-					time: "2013-04",
-					title: "成功推出256×360 pixel size指紋辨識感測IC。"
-				},
-				{
-					time: "2014-03",
-					title: "成功推出160×160 pixel size指紋辨識感測IC。"
-				},
-				{
-					time: "2014-05",
-					title: "成功推出208×288 pixel size指紋辨識感測IC。"
-					offsetTop: "120px"
-				},
-				{
-					time: "2014-07",
-					title: "獲得新竹科學工業園區管理局MG+4C垂直整合推動專案計畫補助「用於智慧型手持設備支具防偽功能指紋感測裝置」開發案。"
-				},
-				{
-					time: "2014-11",
-					title: "成功推出第二代160×160 pixel size指紋辨識感測IC，適用於智慧型手持設備。"
-				},
-				{
-					time: "2015-01",
-					title: "成功推出指紋辨識感測IC結合controller之解決方案。"
-				}
-			]
-		}
-	}
+  data() {
+    return {
+      list: [
+        {
+          time: "2013-04",
+          title: "成功推出256×360 pixel size指紋辨識感測IC。"
+        },
+        {
+          time: "2014-03",
+          title: "成功推出160×160 pixel size指紋辨識感測IC。"
+        },
+        {
+          time: "2014-05",
+          title: "成功推出208×288 pixel size指紋辨識感測IC。"
+          offsetTop: "120px"
+        },
+        {
+          time: "2014-07",
+          title: "獲得新竹科學工業園區管理局MG+4C垂直整合推動專案計畫補助「用於智慧型手持設備支具防偽功能指紋感測裝置」開發案。"
+        },
+        {
+          time: "2014-11",
+          title: "成功推出第二代160×160 pixel size指紋辨識感測IC，適用於智慧型手持設備。"
+        },
+        {
+          time: "2015-01",
+          title: "成功推出指紋辨識感測IC結合controller之解決方案。"
+        }
+      ]
+    }
+  }
 }
 ```
 
@@ -109,23 +109,23 @@ Pick a key as time (default as `time`).
 
 ```html
 <TreeLikeTimeline :data="list" time-key="date">
-	<template v-slot="{ item }">
-		<time>{{ item.date }}</time>
-	</template>
+  <template v-slot="{ item }">
+    <time>{{ item.date }}</time>
+  </template>
 </TreeLikeTimeline>
 ```
 
 ```js
 export default {
-	data() {
-		return {
-			list: [
-				{
-					date: "2013-04",
-				},
-			],
-		};
-	},
+  data() {
+    return {
+      list: [
+        {
+          date: "2013-04",
+        },
+      ],
+    };
+  },
 };
 ```
 
@@ -135,27 +135,27 @@ When the content of the nodes on both sides are completely side by side, you can
 
 ```html
 <TreeLikeTimeline :data="list">
-	<template v-slot="{ item }">
-		<time>{{ item.time }}</time>
-	</template>
+  <template v-slot="{ item }">
+    <time>{{ item.time }}</time>
+  </template>
 </TreeLikeTimeline>
 ```
 
 ```js
 export default {
-	data() {
-		return {
-			list: [
-				{
-					time: "2013-04",
-				},
-				{
-					time: "2013-05",
-					offsetTop: "50px",
-				},
-			],
-		};
-	},
+  data() {
+    return {
+      list: [
+        {
+          time: "2013-04",
+        },
+        {
+          time: "2013-05",
+          offsetTop: "50px",
+        },
+      ],
+    };
+  },
 };
 ```
 
@@ -167,19 +167,19 @@ You can format timenode label by using `divider-label` attribute.
 
 ```html
 <TreeLikeTimeline :data="list" :divider-label="formatDividerLabel">
-	<template v-slot="{ item }">
-		<time>{{ item.time }}</time>
-	</template>
+  <template v-slot="{ item }">
+    <time>{{ item.time }}</time>
+  </template>
 </TreeLikeTimeline>
 ```
 
 ```js
 export default {
-	methods: {
-		formatDividerLabel(timeValue) {
-			return new Date(timeValue).getFullYear();
-		},
-	},
+  methods: {
+    formatDividerLabel(timeValue) {
+      return new Date(timeValue).getFullYear();
+    },
+  },
 };
 ```
 
@@ -190,9 +190,9 @@ Also change text color of timeline node by using `text-color`.
 
 ```html
 <TreeLikeTimeline :data="list" theme="#738bff" text-color="#fffff">
-	<template v-slot="{ item }">
-		<time>{{ item.time }}</time>
-	</template>
+  <template v-slot="{ item }">
+    <time>{{ item.time }}</time>
+  </template>
 </TreeLikeTimeline>
 ```
 
@@ -204,13 +204,13 @@ HTML
 
 ```html
 <TreeLikeTimeline :data="list">
-	<template v-slot="{ item }">
-		<article>
-			<img :src="item.thumb" :alt="item.title" :width="item.thumb_size" />
-			<time>{{ timeFilter(item.time) }}</time>
-			<p>{{ item.title }}</p>
-		</article>
-	</template>
+  <template v-slot="{ item }">
+    <article>
+      <img :src="item.thumb" :alt="item.title" :width="item.thumb_size" />
+      <time>{{ timeFilter(item.time) }}</time>
+      <p>{{ item.title }}</p>
+    </article>
+  </template>
 </TreeLikeTimeline>
 ```
 
@@ -219,17 +219,17 @@ CSS
 ```css
 /* Left side */
 .tree-like-timeline-vue__node_item:nth-of-type(even) {
-	article {
-		background: yellow;
-		border: 5px double red;
-	}
+  article {
+    background: yellow;
+    border: 5px double red;
+  }
 }
 /* Right side */
 .tree-like-timeline-vue__node_item:nth-of-type(odd) {
-	article {
-		background: pink;
-		border: 3px dashed blue;
-	}
+  article {
+    background: pink;
+    border: 3px dashed blue;
+  }
 }
 ```
 
