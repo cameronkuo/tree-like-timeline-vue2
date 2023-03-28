@@ -1,4 +1,4 @@
-# tree-like-timeline-vue2
+# tree-like-timeline-vue22
 
 A lightweight tree-like timeline component base on **Vue2** without any dependency.
 
@@ -19,47 +19,47 @@ A lightweight tree-like timeline component base on **Vue2** without any dependen
 ## Install
 
 ```
-npm install tree-like-timeline-vue
+npm install tree-like-timeline-vue2
 ```
 
 ## Quick Start
 
-Import `tree-like-timeline-vue` component
+Import `tree-like-timeline-vue2` component
 
 ```js
-import TreeLikeTimeline from "tree-like-timeline-vue";
+import TreeLikeTimeline from "tree-like-timeline-vue2";
 export default {
-  components: {
-    TreeLikeTimeline,
-  },
+	components: {
+		TreeLikeTimeline,
+	},
 };
 ```
 
-Import `tree-like-timeline-vue.css` file
+Import `tree-like-timeline-vue2.css` file
 
 ```css
 <style>
-@import "tree-like-timeline-vue/dist/tree-like-timeline-vue.css";
+@import "tree-like-timeline-vue2/dist/tree-like-timeline-vue2.css";
 </style>
 ```
 
 Or
-Import `tree-like-timeline-vue.css` by webpack
+Import `tree-like-timeline-vue2.css` by webpack
 
 ```js
-import "tree-like-timeline-vue/dist/tree-like-timeline-vue.css";
+import "tree-like-timeline-vue2/dist/tree-like-timeline-vue2.css";
 ```
 
 Vue template
 
 ```html
 <TreeLikeTimeline :data="list">
-  <template v-slot="{ item }">
-    <article class="timeline__node">
-      <time>{{ item.time }}</time>
-      <p>{{ item.title }}</p>
-    </article>
-  </template>
+	<template v-slot="{ item }">
+		<article class="timeline__node">
+			<time>{{ item.time }}</time>
+			<p>{{ item.title }}</p>
+		</article>
+	</template>
 </TreeLikeTimeline>
 ```
 
@@ -109,23 +109,23 @@ Pick a key as time (default as `time`).
 
 ```html
 <TreeLikeTimeline :data="list" time-key="date">
-  <template v-slot="{ item }">
-    <time>{{ item.date }}</time>
-  </template>
+	<template v-slot="{ item }">
+		<time>{{ item.date }}</time>
+	</template>
 </TreeLikeTimeline>
 ```
 
 ```js
 export default {
-  data() {
-    return {
-      list: [
-        {
-          date: "2013-04",
-        },
-      ],
-    };
-  },
+	data() {
+		return {
+			list: [
+				{
+					date: "2013-04",
+				},
+			],
+		};
+	},
 };
 ```
 
@@ -135,27 +135,27 @@ When the content of the nodes on both sides are completely side by side, you can
 
 ```html
 <TreeLikeTimeline :data="list">
-  <template v-slot="{ item }">
-    <time>{{ item.time }}</time>
-  </template>
+	<template v-slot="{ item }">
+		<time>{{ item.time }}</time>
+	</template>
 </TreeLikeTimeline>
 ```
 
 ```js
 export default {
-  data() {
-    return {
-      list: [
-        {
-          time: "2013-04",
-        },
-        {
-          time: "2013-05",
-          offsetTop: "50px",
-        },
-      ],
-    };
-  },
+	data() {
+		return {
+			list: [
+				{
+					time: "2013-04",
+				},
+				{
+					time: "2013-05",
+					offsetTop: "50px",
+				},
+			],
+		};
+	},
 };
 ```
 
@@ -167,19 +167,19 @@ You can format timenode label by using `divider-label` attribute.
 
 ```html
 <TreeLikeTimeline :data="list" :divider-label="formatDividerLabel">
-  <template v-slot="{ item }">
-    <time>{{ item.time }}</time>
-  </template>
+	<template v-slot="{ item }">
+		<time>{{ item.time }}</time>
+	</template>
 </TreeLikeTimeline>
 ```
 
 ```js
 export default {
-  methods: {
-    formatDividerLabel(timeValue) {
-      return new Date(timeValue).getFullYear();
-    },
-  },
+	methods: {
+		formatDividerLabel(timeValue) {
+			return new Date(timeValue).getFullYear();
+		},
+	},
 };
 ```
 
@@ -190,27 +190,27 @@ Also change text color of timeline node by using `text-color`.
 
 ```html
 <TreeLikeTimeline :data="list" theme="#738bff" text-color="#fffff">
-  <template v-slot="{ item }">
-    <time>{{ item.time }}</time>
-  </template>
+	<template v-slot="{ item }">
+		<time>{{ item.time }}</time>
+	</template>
 </TreeLikeTimeline>
 ```
 
 ### Custom Your content style
 
-You can access the class `.tree-like-timeline-vue__node_item` to custom content style
+You can access the class `.tree-like-timeline-vue2__node_item` to custom content style
 
 HTML
 
 ```html
 <TreeLikeTimeline :data="list">
-  <template v-slot="{ item }">
-    <article>
-      <img :src="item.thumb" :alt="item.title" :width="item.thumb_size" />
-      <time>{{ timeFilter(item.time) }}</time>
-      <p>{{ item.title }}</p>
-    </article>
-  </template>
+	<template v-slot="{ item }">
+		<article>
+			<img :src="item.thumb" :alt="item.title" :width="item.thumb_size" />
+			<time>{{ timeFilter(item.time) }}</time>
+			<p>{{ item.title }}</p>
+		</article>
+	</template>
 </TreeLikeTimeline>
 ```
 
@@ -218,18 +218,18 @@ CSS
 
 ```css
 /* Left side */
-.tree-like-timeline-vue__node_item:nth-of-type(even) {
-  article {
-    background: yellow;
-    border: 5px double red;
-  }
+.tree-like-timeline-vue2__node_item:nth-of-type(even) {
+	article {
+		background: yellow;
+		border: 5px double red;
+	}
 }
 /* Right side */
-.tree-like-timeline-vue__node_item:nth-of-type(odd) {
-  article {
-    background: pink;
-    border: 3px dashed blue;
-  }
+.tree-like-timeline-vue2__node_item:nth-of-type(odd) {
+	article {
+		background: pink;
+		border: 3px dashed blue;
+	}
 }
 ```
 

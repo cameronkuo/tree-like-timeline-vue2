@@ -1,21 +1,21 @@
 {
-	"name": "tree-like-timeline-vue",
+	"name": "tree-like-timeline-vue2",
 	"version": "1.0.0",
-	"main": "dist/tree-like-timeline-vue.common.js",
+	"main": "dist/tree-like-timeline-vue2.common.js",
 	"scripts": {
 		"serve": "vue-cli-service serve",
-		"build": "vue-cli-service build --target lib --name tree-like-timeline-vue ./src/components/index.js",
+		"build": "vue-cli-service build --target lib --name tree-like-timeline-vue2 ./src/components/index.js",
 		"build:demo": "vue-cli-service build ./src/main.js --dest demo --mode development",
 		"prepublish": "npm run build"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/jienfu/tree-like-timeline-vue.git"
+		"url": "git+https://github.com/jienfu/tree-like-timeline-vue2.git"
 	},
 	"files": [
 		"dist/*"
 	],
-	"style": "dist/tree-like-timeline-vue.css",
+	"style": "dist/tree-like-timeline-vue2.css",
 	"keywords": [
 		"timeline",
 		"vue"

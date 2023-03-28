@@ -1,10 +1,21 @@
 <template>
-	<section class="tree-like-timeline-vue" :style="cssVars">
-		<div class="tree-like-timeline-vue__nodes">
+	<section class="tree-like-timeline-vue2" :style="cssVars">
+		<div class="tree-like-timeline-vue2__nodes">
 			<template v-for="(item, i) in sortedList">
-				<span v-if="item.divider" class="tree-like-timeline-vue__node_divider" :key="`${item[timeKey]}-${i}`" :data-year="yearFilter(item[timeKey])" />
-				<div v-else class="tree-like-timeline-vue__node_item" ref="tree-like-timeline-vue__node_item" :style="{ marginTop: is_mobile ? '' : item.offsetTop }" :key="`${item[timeKey]}-${i}`">
-					<slot :item="item" :index="i">{{item}}</slot>
+				<span
+					v-if="item.divider"
+					:key="`${item[timeKey]}-${i}`"
+					:data-year="yearFilter(item[timeKey])"
+					class="tree-like-timeline-vue2__node_divider"
+				/>
+				<div
+					v-else
+					:key="`${item[timeKey]}-${i}`"
+					:style="{ marginTop: is_mobile ? '' : item.offsetTop }"
+					class="tree-like-timeline-vue2__node_item"
+					ref="tree-like-timeline-vue2__node_item"
+				>
+					<slot :item="item" :index="i">{{ item }}</slot>
 				</div>
 			</template>
 		</div>
@@ -20,47 +31,58 @@ export default {
 		},
 		timeKey: {
 			type: String,
-			default: () => "time"
+			default: () => "time",
 		},
 		theme: {
 			type: String,
-			default: () => "rgb(200, 200, 200)"
+			default: () => "rgb(200, 200, 200)",
 		},
 		textColor: {
 			type: String,
-			default: () => "#000"
+			default: () => "#000",
 		},
-		dividerLabel: Function
+		dividerLabel: Function,
 	},
 	data() {
 		return {
 			is_mobile: true,
-		}
+		};
 	},
 	computed: {
 		sortedList() {
 			return this.data
 				.reduce((a, b) => {
 					const time = new Date(b[this.timeKey]).getFullYear().toString();
-					if (!a.find(item => new Date(item[this.timeKey]).getFullYear().toString() == time)) a.push({ [this.timeKey]: time, divider: true });
+					if (
+						!a.find(
+							(item) =>
+								new Date(item[this.timeKey]).getFullYear().toString() == time
+						)
+					)
+						a.push({ [this.timeKey]: time, divider: true });
 					a.push(b);
 					return a;
-				}, new Array)
+				}, new Array())
 				.sort((a, b) => {
-					return new Date(a[this.timeKey]).getTime() - new Date(b[this.timeKey]).getTime();
+					return (
+						new Date(a[this.timeKey]).getTime() -
+						new Date(b[this.timeKey]).getTime()
+					);
 				});
 		},
 		cssVars() {
 			return {
-				"--tree-like-timeline-vue_theme": this.theme,
-				"--tree-like-timeline-vue_text-color": this.textColor,
-			}
+				"--tree-like-timeline-vue2_theme": this.theme,
+				"--tree-like-timeline-vue2_text-color": this.textColor,
+			};
 		},
 	},
 	methods: {
 		yearFilter(val) {
-			return this.dividerLabel && this.dividerLabel(val)
-				|| new Date(val).getFullYear();
+			return (
+				(this.dividerLabel && this.dividerLabel(val)) ||
+				new Date(val).getFullYear()
+			);
 		},
 		initRWD() {
 			this.is_mobile = window.innerWidth <= 768;
@@ -72,17 +94,17 @@ export default {
 			window.addEventListener("resize", this.initRWD);
 		});
 	},
-}
+};
 </script>
 
 <style lang="scss">
-$--tree-like-timeline-vue_connect_line: 5em; // 左右兩邊與中間連接線之寬度
-$--tree-like-timeline-vue_divider_size: 4em; // 年份分界節點之寬高
-$--tree-like-timeline-vue_point_size: 1em; // 左右兩邊對中線的圓點之寬高
-.tree-like-timeline-vue {
+$--tree-like-timeline-vue2_connect_line: 5em; // 左右兩邊與中間連接線之寬度
+$--tree-like-timeline-vue2_divider_size: 4em; // 年份分界節點之寬高
+$--tree-like-timeline-vue2_point_size: 1em; // 左右兩邊對中線的圓點之寬高
+.tree-like-timeline-vue2 {
 	padding: 0;
 	position: relative;
-	margin-top: #{$--tree-like-timeline-vue_divider_size * 0.5} !important;
+	margin-top: #{$--tree-like-timeline-vue2_divider_size * 0.5} !important;
 
 	// 中線
 	&::before {
@@ -90,7 +112,7 @@ $--tree-like-timeline-vue_point_size: 1em; // 左右兩邊對中線的圓點之�
 		display: block;
 		height: 100%;
 		width: 1px;
-		background: var(--tree-like-timeline-vue_theme);
+		background: var(--tree-like-timeline-vue2_theme);
 		position: absolute;
 		top: 0;
 		left: 50%;
@@ -98,12 +120,12 @@ $--tree-like-timeline-vue_point_size: 1em; // 左右兩邊對中線的圓點之�
 		transform: translateX(-50%);
 		@media screen and (max-width: 768px) {
 			transform: none;
-			left: #{$--tree-like-timeline-vue_divider_size * 0.5};
+			left: #{$--tree-like-timeline-vue2_divider_size * 0.5};
 		}
 	}
 
 	// 年份節點
-	.tree-like-timeline-vue__node_divider {
+	.tree-like-timeline-vue2__node_divider {
 		clear: both;
 		width: 100%;
 		display: block;
@@ -114,11 +136,11 @@ $--tree-like-timeline-vue_point_size: 1em; // 左右兩邊對中線的圓點之�
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			width: $--tree-like-timeline-vue_divider_size;
-			height: $--tree-like-timeline-vue_divider_size;
+			width: $--tree-like-timeline-vue2_divider_size;
+			height: $--tree-like-timeline-vue2_divider_size;
 			border-radius: 100%;
-			background: var(--tree-like-timeline-vue_theme);
-			color: var(--tree-like-timeline-vue_text-color);
+			background: var(--tree-like-timeline-vue2_theme);
+			color: var(--tree-like-timeline-vue2_text-color);
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -130,9 +152,9 @@ $--tree-like-timeline-vue_point_size: 1em; // 左右兩邊對中線的圓點之�
 	}
 
 	// 節點
-	.tree-like-timeline-vue__node_item {
+	.tree-like-timeline-vue2__node_item {
 		position: relative;
-		width: calc(50% - #{$--tree-like-timeline-vue_connect_line});
+		width: calc(50% - #{$--tree-like-timeline-vue2_connect_line});
 
 		&:not(:last-child) {
 			margin-bottom: 20px;
@@ -142,9 +164,9 @@ $--tree-like-timeline-vue_point_size: 1em; // 左右兩邊對中線的圓點之�
 		&::before {
 			content: "";
 			display: block;
-			width: $--tree-like-timeline-vue_connect_line;
+			width: $--tree-like-timeline-vue2_connect_line;
 			height: 2px;
-			background: var(--tree-like-timeline-vue_theme);
+			background: var(--tree-like-timeline-vue2_theme);
 			position: absolute;
 			top: 30%;
 			transform: translateY(-50%);
@@ -155,11 +177,11 @@ $--tree-like-timeline-vue_point_size: 1em; // 左右兩邊對中線的圓點之�
 			content: "";
 			box-sizing: border-box;
 			display: block;
-			width: $--tree-like-timeline-vue_point_size;
-			height: $--tree-like-timeline-vue_point_size;
+			width: $--tree-like-timeline-vue2_point_size;
+			height: $--tree-like-timeline-vue2_point_size;
 			background: #fff;
 			color: #fff;
-			border: 3px solid var(--tree-like-timeline-vue_theme);
+			border: 3px solid var(--tree-like-timeline-vue2_theme);
 			position: absolute;
 			top: 30%;
 			transform: translateY(-50%);
@@ -178,8 +200,8 @@ $--tree-like-timeline-vue_point_size: 1em; // 左右兩邊對中線的圓點之�
 			// 左邊對中線的圓點
 			&::after {
 				left: calc(
-					100% + #{$--tree-like-timeline-vue_connect_line -
-						$--tree-like-timeline-vue_point_size * 0.5}
+					100% + #{$--tree-like-timeline-vue2_connect_line -
+						$--tree-like-timeline-vue2_point_size * 0.5}
 				);
 			}
 		}
@@ -196,29 +218,29 @@ $--tree-like-timeline-vue_point_size: 1em; // 左右兩邊對中線的圓點之�
 			// 右邊對中線的圓點
 			&::after {
 				right: calc(
-					100% + #{$--tree-like-timeline-vue_connect_line -
-						$--tree-like-timeline-vue_point_size * 0.5}
+					100% + #{$--tree-like-timeline-vue2_connect_line -
+						$--tree-like-timeline-vue2_point_size * 0.5}
 				);
 			}
 		}
 
 		@media screen and (max-width: 768px) {
-			width: calc(100% - #{$--tree-like-timeline-vue_connect_line});
+			width: calc(100% - #{$--tree-like-timeline-vue2_connect_line});
 			float: right !important;
 			// 全部對中線的連接線
 			&::before {
 				left: unset !important;
 				right: 100% !important;
-				width: #{$--tree-like-timeline-vue_connect_line -
-					($--tree-like-timeline-vue_divider_size * 0.5)};
+				width: #{$--tree-like-timeline-vue2_connect_line -
+					($--tree-like-timeline-vue2_divider_size * 0.5)};
 			}
 			// 全部對中線的圓點
 			&::after {
 				left: unset !important;
 				right: calc(
-					100% + #{$--tree-like-timeline-vue_connect_line -
-						$--tree-like-timeline-vue_divider_size * 0.5 -
-						$--tree-like-timeline-vue_point_size * 0.5}
+					100% + #{$--tree-like-timeline-vue2_connect_line -
+						$--tree-like-timeline-vue2_divider_size * 0.5 -
+						$--tree-like-timeline-vue2_point_size * 0.5}
 				) !important;
 			}
 		}
