@@ -1,39 +1,40 @@
 {
-	"name": "tree-like-timeline-vue2",
-	"version": "1.0.0",
-	"main": "dist/tree-like-timeline-vue2.common.js",
-	"scripts": {
-		"serve": "vue-cli-service serve",
-		"build": "vue-cli-service build --target lib --name tree-like-timeline-vue2 ./src/components/index.js",
-		"build:demo": "vue-cli-service build ./src/main.js --dest demo --mode development",
-		"prepublish": "npm run build"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/jienfu/tree-like-timeline-vue2.git"
-	},
-	"files": [
-		"dist/*"
-	],
-	"style": "dist/tree-like-timeline-vue2.css",
-	"keywords": [
-		"timeline",
-		"vue"
-	],
-	"dependencies": {
-		"core-js": "^3.6.5",
-		"vue": "^2.6.11"
-	},
-	"devDependencies": {
-		"@vue/cli-plugin-babel": "~4.5.0",
-		"@vue/cli-service": "~4.5.0",
-		"sass": "^1.26.5",
-		"sass-loader": "^8.0.2",
-		"vue-template-compiler": "^2.6.11"
-	},
-	"browserslist": [
-		"> 1%",
-		"last 2 versions",
-		"not dead"
-	]
+  "name": "tree-like-timeline-vue2",
+  "version": "1.0.0",
+  "main": "dist/tree-like-timeline-vue2.umd.js",
+  "module": "dist/tree-like-timeline-vue2.umd.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --target lib --name tree-like-timeline-vue2 ./src/components/index.js",
+    "build:demo": "vue-cli-service build ./src/main.js --dest demo --mode development",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cameronkuo/tree-like-timeline-vue2.git"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "style": "dist/tree-like-timeline-vue2.css",
+  "keywords": [
+    "timeline",
+    "vue2"
+  ],
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }
