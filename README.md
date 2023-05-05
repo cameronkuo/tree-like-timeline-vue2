@@ -15,9 +15,9 @@ A lightweight tree-like timeline component base on **Vue2** without any dependen
 
 ## Mobile friendly
 
-[Screenshot](https://i.imgur.com/C1oG6pr.gif)
+[Screenshot](https://i.imgur.com/zJHxxs9.gif)
 
-![Screenshot](https://i.imgur.com/PQTlf2g.gif)
+![Screenshot](https://i.imgur.com/397ERgE.gif)
 
 ## Install
 
@@ -31,6 +31,11 @@ Import `tree-like-timeline-vue2` component
 
 ```js
 import TreeLikeTimeline from "tree-like-timeline-vue2";
+export default {
+  components: {
+    TreeLikeTimeline,
+  },
+};
 ```
 
 Import `tree-like-timeline-vue2.css` file
@@ -136,7 +141,7 @@ export default {
 
 ### offsetTop
 
-When the content of the nodes on both sides are completely side by side, you can independently adjust the node to be shifted downward.
+When the content of the nodes on both sides is completely side by side, you can independently adjust the node to be shifted downward.
 
 ```html
 <TreeLikeTimeline :data="list">
@@ -209,7 +214,7 @@ export default {
 ### Theme and Text Color
 
 You can custom theme color by using `theme` attribute.
-Also change text color of timeline node by using `text-color`.
+Also, change text color of timeline node by using `text-color`.
 
 ```html
 <TreeLikeTimeline :data="list" theme="#738bff" text-color="#fffff">
