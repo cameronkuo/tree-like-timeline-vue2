@@ -1,4 +1,4 @@
-# tree-like-timeline-vue22
+# tree-like-timeline-vue2
 
 A lightweight tree-like timeline component base on **Vue2** without any dependency.
 
@@ -6,19 +6,22 @@ A lightweight tree-like timeline component base on **Vue2** without any dependen
 
 - Lightweight (without any dependency)
 - Mobile friendly (RWD)
+- Automatically sort by time and split into left and right sides
 - Customize your content flexibly
 
 ## Layout
 
-![Screenshot](https://i.imgur.com/gMcEI7V.png)
+![Screenshot](https://i.imgur.com/Hgir36b.png)
 
 ## Mobile friendly
 
-![Screenshot](https://i.imgur.com/coUSmsJ.gif)
+[Screenshot](https://i.imgur.com/C1oG6pr.gif)
+
+![Screenshot](https://i.imgur.com/PQTlf2g.gif)
 
 ## Install
 
-```
+```shell
 npm install tree-like-timeline-vue2
 ```
 
@@ -28,11 +31,6 @@ Import `tree-like-timeline-vue2` component
 
 ```js
 import TreeLikeTimeline from "tree-like-timeline-vue2";
-export default {
-	components: {
-		TreeLikeTimeline,
-	},
-};
 ```
 
 Import `tree-like-timeline-vue2.css` file
@@ -44,7 +42,7 @@ Import `tree-like-timeline-vue2.css` file
 ```
 
 Or
-Import `tree-like-timeline-vue2.css` by webpack
+Import `tree-like-timeline-vue2.css` in your main js or ts file
 
 ```js
 import "tree-like-timeline-vue2/dist/tree-like-timeline-vue2.css";
@@ -54,12 +52,13 @@ Vue template
 
 ```html
 <TreeLikeTimeline :data="list">
-	<template v-slot="{ item }">
-		<article class="timeline__node">
-			<time>{{ item.time }}</time>
-			<p>{{ item.title }}</p>
-		</article>
-	</template>
+  <template v-slot="{ item }">
+    <article>
+      <time>{{ item.time }}</time>
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.content }}</p>
+    </article>
+  </template>
 </TreeLikeTimeline>
 ```
 
@@ -72,28 +71,34 @@ export default {
       list: [
         {
           time: "2013-04",
-          title: "成功推出256×360 pixel size指紋辨識感測IC。"
+          title: "What is Lorem Ipsum?",
+          content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
         },
         {
           time: "2014-03",
-          title: "成功推出160×160 pixel size指紋辨識感測IC。"
+          title: "What is Lorem Ipsum?",
+          content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
         },
         {
           time: "2014-05",
-          title: "成功推出208×288 pixel size指紋辨識感測IC。"
+          title: "What is Lorem Ipsum?",
+          content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
           offsetTop: "120px"
         },
         {
           time: "2014-07",
-          title: "獲得新竹科學工業園區管理局MG+4C垂直整合推動專案計畫補助「用於智慧型手持設備支具防偽功能指紋感測裝置」開發案。"
+          title: "What is Lorem Ipsum?",
+          content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
         },
         {
           time: "2014-11",
-          title: "成功推出第二代160×160 pixel size指紋辨識感測IC，適用於智慧型手持設備。"
+          title: "What is Lorem Ipsum?",
+          content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
         },
         {
           time: "2015-01",
-          title: "成功推出指紋辨識感測IC結合controller之解決方案。"
+          title: "What is Lorem Ipsum?",
+          content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
         }
       ]
     }
@@ -109,23 +114,23 @@ Pick a key as time (default as `time`).
 
 ```html
 <TreeLikeTimeline :data="list" time-key="date">
-	<template v-slot="{ item }">
-		<time>{{ item.date }}</time>
-	</template>
+  <template v-slot="{ item }">
+    <time>{{ item.date }}</time>
+  </template>
 </TreeLikeTimeline>
 ```
 
 ```js
 export default {
-	data() {
-		return {
-			list: [
-				{
-					date: "2013-04",
-				},
-			],
-		};
-	},
+  data() {
+    return {
+      list: [
+        {
+          date: "2013-04",
+        },
+      ],
+    };
+  },
 };
 ```
 
@@ -135,31 +140,49 @@ When the content of the nodes on both sides are completely side by side, you can
 
 ```html
 <TreeLikeTimeline :data="list">
-	<template v-slot="{ item }">
-		<time>{{ item.time }}</time>
-	</template>
+  <template v-slot="{ item }">
+    <time>{{ item.time }}</time>
+  </template>
 </TreeLikeTimeline>
 ```
 
 ```js
 export default {
-	data() {
-		return {
-			list: [
-				{
-					time: "2013-04",
-				},
-				{
-					time: "2013-05",
-					offsetTop: "50px",
-				},
-			],
-		};
-	},
+  data() {
+    return {
+      list: [
+        {
+          time: "2014-03",
+          title: "Where does it come from?",
+          content:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        },
+        {
+          time: "2014-05",
+          title: "Where can I get some?",
+          content:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        },
+        {
+          time: "2014-07",
+          title: "translation by H. Rackham",
+          content:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        },
+        {
+          time: "2014-11",
+          title: "de Finibus Bonorum et Malorum",
+          content:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          offsetTop: "100px",
+        },
+      ],
+    };
+  },
 };
 ```
 
-![Screenshot](https://i.imgur.com/OLybsL3.png)
+![Screenshot](https://i.imgur.com/57lFLu9.png)
 
 ### dividerLabel
 
@@ -167,19 +190,19 @@ You can format timenode label by using `divider-label` attribute.
 
 ```html
 <TreeLikeTimeline :data="list" :divider-label="formatDividerLabel">
-	<template v-slot="{ item }">
-		<time>{{ item.time }}</time>
-	</template>
+  <template v-slot="{ item }">
+    <time>{{ item.time }}</time>
+  </template>
 </TreeLikeTimeline>
 ```
 
 ```js
 export default {
-	methods: {
-		formatDividerLabel(timeValue) {
-			return new Date(timeValue).getFullYear();
-		},
-	},
+  methods: {
+    formatDividerLabel(timeValue) {
+      return new Date(timeValue).getFullYear();
+    },
+  },
 };
 ```
 
@@ -190,9 +213,9 @@ Also change text color of timeline node by using `text-color`.
 
 ```html
 <TreeLikeTimeline :data="list" theme="#738bff" text-color="#fffff">
-	<template v-slot="{ item }">
-		<time>{{ item.time }}</time>
-	</template>
+  <template v-slot="{ item }">
+    <time>{{ item.time }}</time>
+  </template>
 </TreeLikeTimeline>
 ```
 
@@ -204,13 +227,13 @@ HTML
 
 ```html
 <TreeLikeTimeline :data="list">
-	<template v-slot="{ item }">
-		<article>
-			<img :src="item.thumb" :alt="item.title" :width="item.thumb_size" />
-			<time>{{ timeFilter(item.time) }}</time>
-			<p>{{ item.title }}</p>
-		</article>
-	</template>
+  <template v-slot="{ item }">
+    <article>
+      <time>{{ item.time }}</time>
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.content }}</p>
+    </article>
+  </template>
 </TreeLikeTimeline>
 ```
 
@@ -219,19 +242,19 @@ CSS
 ```css
 /* Left side */
 .tree-like-timeline-vue2__node_item:nth-of-type(even) {
-	article {
-		background: yellow;
-		border: 5px double red;
-	}
+  article {
+    background: yellow;
+    border: 5px double red;
+  }
 }
 /* Right side */
 .tree-like-timeline-vue2__node_item:nth-of-type(odd) {
-	article {
-		background: pink;
-		border: 3px dashed blue;
-	}
+  article {
+    background: pink;
+    border: 3px dashed blue;
+  }
 }
 ```
 
 Result
-![Screenshot](https://i.imgur.com/qE1zpN3.png)
+![Screenshot](https://i.imgur.com/L0RbK53.png)
