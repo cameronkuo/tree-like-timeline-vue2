@@ -2,7 +2,12 @@
 	<Timeline :data="list" theme="#738bff" text-color="rgb(255,255,255)">
 		<template v-slot="{ item }">
 			<article class="tree-like-timeline-vue2__node">
-				<img :src="item.thumb" :alt="item.title" :width="item.thumb_size" />
+				<img
+					v-if="item.thumb"
+					:src="item.thumb"
+					:alt="item.title"
+					style="width: 100%"
+				/>
 				<time>{{ timeFilter(item.time) }}</time>
 				<p>{{ item.title }}</p>
 			</article>
@@ -21,131 +26,239 @@ export default {
 		return {
 			list: [
 				{
-					time: "2011-07",
-					title: "映智科技股份有限公司設立",
-					thumb: "/assets/overview1.png",
-					thumb_size: "30%",
-				},
-				{
-					time: "2013-04",
-					title: "成功推出256×360 pixel size指紋辨識感測IC。",
-					thumb: "/assets/overview2.png",
-					thumb_size: "40%",
-				},
-				{
-					time: "2014-03",
-					title: "成功推出160×160 pixel size指紋辨識感測IC。",
-					thumb: "/assets/overview3.png",
-					thumb_size: "40%",
-				},
-				{
-					time: "2014-05",
-					title: "成功推出208×288 pixel size指紋辨識感測IC。",
-					thumb: "/assets/overview4.png",
-					thumb_size: "40%",
-					offsetTop: "120px",
-				},
-				{
-					time: "2014-07",
+					time: "1965",
 					title:
-						"獲得新竹科學工業園區管理局MG+4C垂直整合推動專案計畫補助「用於智慧型手持設備支具防偽功能指紋感測裝置」開發案。",
-					thumb: "/assets/overview5.png",
-					thumb_size: "30%",
+						"Walt Disney unveils plans to build a theme park in Central Florido.",
+					thumb: require("@/assets/images/1965.png"),
 				},
 				{
-					time: "2014-11",
+					time: "1971",
 					title:
-						"成功推出第二代160×160 pixel size指紋辨識感測IC，適用於智慧型手持設備。",
-					thumb: "/assets/overview6.png",
-					thumb_size: "40%",
+						"Magic Kingdom Park opens with a grand celebration that features a parade of Disney characters and 76 trombones. Opening-day attractions included The Haunted Mansion, Mad Tea Cups, and Mr. Toad's Wild Ride, among others.",
+					thumb: require("@/assets/images/1971.png"),
 				},
 				{
-					time: "2015-01",
-					title: "成功推出指紋辨識感測IC結合controller之解決方案。",
-					thumb: "/assets/overview7.png",
-					thumb_size: "30%",
+					time: "1973",
+					title: "Pirates of the Caribbean is added to Adventureland.",
+					thumb: require("@/assets/images/1973.png"),
 				},
 				{
-					time: "2015-07",
+					time: "1974",
+					title: "Hoop-Dee Doo Musical Revue debuts at Pioneer Hall.",
+					offsetTop: "30px",
+				},
+				{
+					time: "1975",
+					title: "Space Mountain makes its first launch Jan. 15.",
+					offsetTop: "30px",
+				},
+				{
+					time: "1975",
 					title:
-						"成功推出指紋辨識感測IC結合安全晶片之解決方案，並獲得工業級平板製造商之採納。",
-					thumb: "/assets/overview8.png",
-					thumb_size: "30%",
-					offsetTop: "150px",
+						"Magic Kingdom Park celebrates the nation's Bicentennial in America on Porade.",
+					thumb: require("@/assets/images/1975.png"),
+					offsetTop: "50px",
 				},
 				{
-					time: "2015-11",
+					time: "1976",
 					title:
-						"獲財團法人中華民國證券櫃檯買賣中心核准公開發行（104.11.18），股票代號6563。",
-					thumb: "/assets/overview9.png",
-					thumb_size: "30%",
+						"River Country, Disney's first water park (more like an ol'fashioned swimming hole), opens June 20.",
+					offsetTop: "30px",
 				},
 				{
-					time: "2016-05",
+					time: "1977",
 					title:
-						"成功推出指紋辨識感測IC結合MUC之解決方案，並順利打入電子鎖供應鏈。",
-					thumb: "/assets/overview10.png",
-					thumb_size: "30%",
+						"The Main Street Electrical Parade debuts on June 11. The first nighttime Disney parade wows guests by bringing Disney fairytales to life in glittering light.",
+					thumb: require("@/assets/images/1977.png"),
 				},
 				{
-					time: "2016-09",
-					title: "導入瑞典演算法大廠Precise Biometrics AB演算法。",
-					thumb: "/assets/overview11.png",
-					thumb_size: "40%",
+					time: "1982",
+					title:
+						"EPCOT Center debuts Oct. I. inspired by Walt Disney's Experimental Prototype Community of Tomorrow. Opening attractions included Spaceship Earth, The American Adven ture. Universe of Energy, and Kitchen Kabaret.",
+					thumb: require("@/assets/images/1982.png"),
+				},
+				{
+					time: "1983",
+					title:
+						"Guests get to know Figment at Journey Into Imagination, and venture into the future at Horizons.",
+					thumb: require("@/assets/images/1983.png"),
+				},
+				{
+					time: "1986",
+					title: "Captain EO, the park's first 4-D film, debuts at Epcot.",
+					offsetTop: "30px",
+				},
+				{
+					time: "1988",
+					title:
+						"Mickey's Birthdayland opens at Magic Kingdom Park in honor of the Mouse's 60th birthday",
+					thumb: require("@/assets/images/1988.png"),
+				},
+				{
+					time: "1989",
+					title: "Disney-MGM Studios and Pleasure Island open May I.",
+					thumb: require("@/assets/images/1989_1.png"),
+				},
+				{
+					time: "1989",
+					title:
+						"Guests begin braving Mount Moydoy at Disney's Typhoon Lagoon June 1.",
+					thumb: require("@/assets/images/1989_2.png"),
+					offsetTop: "50px",
+				},
+				{
+					time: "1989",
+					title:
+						'Feature Animation Florida opens, and would produce the full-length animated features "Mulan." *Lilo & Stitch and "Brother Bear."',
+					thumb: require("@/assets/images/1989_3.png"),
+				},
+				{
+					time: "1990",
+					title:
+						"Sorcery in the Sky fireworks blast off at the Disney-MGM Studios.",
+					thumb: require("@/assets/images/1990.png"),
+				},
+				{
+					time: "1991",
+					title:
+						"The resort morked its 20th anniversary with a new daily procession called the Surprise Celebration Parade.",
+					thumb: require("@/assets/images/1991.png"),
+				},
+				{
+					time: "1994",
+					title:
+						"The first guests take the plunge on The Twilight Zone™ Tower of Terror July 22",
+					thumb: require("@/assets/images/1994.png"),
+				},
+				{
+					time: "1995",
+					title: "Disney's Blizzard Beach opens on April Fools Day.",
+					thumb: require("@/assets/images/1995.png"),
+				},
+				{
+					time: "1996",
+					title:
+						"Magic Kingdom Park marks its 25th anniversary by turning Cinderella Castle into an 18-story birthday cake.",
+					thumb: require("@/assets/images/1996.png"),
+				},
+				{
+					time: "1998",
+					title:
+						"Disney's Animal Kingdom Theme Park opens. In addition to attractions that focus on thrilling animal observation, the park also features the first Walt Disney World attraction inspired by a Pixar film at It's Tough to Be A Bug!",
+					thumb: require("@/assets/images/1998.png"),
+				},
+				{
+					time: "1998",
+					title:
+						"Buzz Lightyear's Space Ranger Spin opens to new Star Command recruits at Magic Kingdom Park.",
+					offsetTop: "30px",
+				},
+				{
+					time: "1999",
+					title: "Disney's FASTPASS Service debuts.",
+					offsetTop: "40px",
+				},
+				{
+					time: "1999",
+					title:
+						"Disney's Animal Kingdom Theme Park expands with the addition of a new land. Asia.",
+					offsetTop: "60px",
+				},
+				{
+					time: "2001",
+					title:
+						"The Magic Carpets of Aladdin whisks guests away on a magical flights beginning May 23.",
+					offsetTop: "30px",
+				},
+				{
+					time: "2003",
+					title:
+						"Donald Duck takes quests along for adventure at Mickey's PhilharMagic.",
+					thumb: require("@/assets/images/2003_1.png"),
+				},
+				{
+					time: "2003",
+					title:
+						"Tufani, the first baby elephant born at Disney's Animal Kingdom Theme Park, arrives May 22.",
+					thumb: require("@/assets/images/2003_2.png"),
+					offsetTop: "70px",
+				},
+				{
+					time: "2003",
+					title:
+						"Wishes nighttime fireworks spectacular dozzles Guests for the first time at Magic Kingdom Park.",
+					thumb: require("@/assets/images/2003_3.png"),
+				},
+				{
+					time: "2003",
+					title:
+						"Guests blast off on Epcot's Mission: SPACE for the first time Aug. 15.",
+					thumb: require("@/assets/images/2003_4.png"),
 					offsetTop: "100px",
 				},
 				{
-					time: "2017-01",
-					title: "成功推出192×256 pixel size指紋辨識感測IC，主供智能家居市場。",
-					thumb: "/assets/overview12.png",
-					thumb_size: "40%",
+					time: "2005",
+					title:
+						"Soarin' debuts at Epcot, and Lights. Motors. Action! Extreme Stunt Show revs up at the Disney-MGM Studios",
+					thumb: require("@/assets/images/2005.png"),
 				},
 				{
-					time: "2017-11",
+					time: "2006",
 					title:
-						"SF302系列產品獲得FBI所頒發的PIV（Personal Identity Verification）認證。",
-					thumb: "/assets/overview13.png",
-					thumb_size: "25%",
+						"Guests embark on the first runway train through the Himalayas at Expedition Everest on April 7.",
+					offsetTop: "30px",
+				},
+				{
+					time: "2006",
+					title:
+						"New Audio-Animatronics of Jack Sparrow and Captain Barbossa are added to Pirates of the Caribbean.",
+					offsetTop: "70px",
+				},
+				{
+					time: "2007",
+					title:
+						"Monsters, Inc. Laugh Floor collects belly laughs at Magic Kingdom Park.",
+					offsetTop: "30px",
+				},
+				{
+					time: "2008",
+					title:
+						"Disney-MGM Studios becomes Disney's Hollywood Studios in January.",
+					offsetTop: "30px",
+				},
+				{
+					time: "2009",
+					title:
+						'Leaders announce a major expansion of Fantasy land at Magic Kinadom Park.It will nearly double the size of the existing area with new attractions based on "Beauty and the Beast. "Snow White and "The Little Mermaid."',
+				},
+				{
+					time: "2010",
+					title: "Captain EO returns to Epcot.",
+					thumb: require("@/assets/images/2010.png"),
+				},
+				{
+					time: "2011",
+					title:
+						"For the first time, Guests can get a FASTPASS ticket to see Mickey Mouse at Magic Kingdom Park.",
+					thumb: require("@/assets/images/2011_1.png"),
+				},
+				{
+					time: "2011",
+					title:
+						"Walt Disney's Enchanted Tiki Room reopens at Magic Kingdom Park.",
+					thumb: require("@/assets/images/2011_2.png"),
 					offsetTop: "100px",
 				},
 				{
-					time: "2018-06",
+					time: "2011",
 					title:
-						"推出內建Touch IC之指紋辨識感測器，有效降低客戶導入之成本與提升產品效能。",
-					thumb: "/assets/overview14.png",
-					thumb_size: "35%",
+						"Star Tours: The Adventures Continue opens at Disnev's Hallwwood Studios.",
 				},
 				{
-					time: "2019-11",
-					title: "成功推出玻璃感測技術專用之ASIC IC─iG101。",
-					thumb: "/assets/overview15.png",
-					thumb_size: "25%",
-				},
-				{
-					time: "2020-04",
-					title: "成功推出第一顆玻璃感測IC─GF601BD，並獲得FBI所頒發的PIV認證。",
-					thumb: "/assets/overview16.png",
-					thumb_size: "25%",
-				},
-				{
-					time: "2020-07",
+					time: "2011",
 					title:
-						"推出大尺寸市占主要尺寸FAP 10之玻璃感測產品SF302G，並亦取得PIV認證。",
-					thumb: "/assets/overview15.png",
-					thumb_size: "25%",
-					offsetTop: "140px",
-				},
-				{
-					time: "2020-10",
-					title: "推出次世代卡片用低功號指紋感測IC─SF803。",
-					thumb: "/assets/overview17.png",
-					thumb_size: "40%",
-				},
-				{
-					time: "2020-12",
-					title: "正式取得ISO 9001:2015 認證。",
-					thumb: "/assets/overview18.png",
-					thumb_size: "25%",
+						'Plans were announced to add a new land based on the film "Avetor" at Disnev\'s Animal Kingdom Theme Pork.',
+					offsetTop: "30px",
 				},
 			],
 		};
