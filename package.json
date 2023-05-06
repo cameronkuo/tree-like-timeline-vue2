@@ -1,6 +1,6 @@
 {
   "name": "tree-like-timeline-vue2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/tree-like-timeline-vue2.umd.js",
   "module": "dist/tree-like-timeline-vue2.umd.js",
   "scripts": {
